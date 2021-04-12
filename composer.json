@@ -10,8 +10,8 @@
   "type": "library",
   "authors": [
     {
-      "name": "",
-      "email": ""
+      "name": "Craig Smith",
+      "email": "craig.smith@customd.com"
     }
   ],
   "require": {
@@ -46,5 +46,8 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "optimize-autoloader": true
+  },
+  "suggest": {
+    "customd/eloquent-model-encrypt": "If wanting to use public/private key restoration"
   }
 }
