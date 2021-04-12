@@ -107,4 +107,48 @@ trait HasRecovery
 
         return $this;
     }
+
+
+
+    /**
+     * sets the answer for the recovery option.
+     *
+     * @param string $string
+     *
+     * @return self
+     */
+    public function setRecoveryAnswer(string $string): self
+    {
+        $this->recoveryAnswer = preg_replace('/[^a-z\d]/', '', strtolower($string));
+
+        return $this;
+    }
+
+    /**
+     * sets the current recovery question.
+     *
+     * @param string $question
+     *
+     * @return self
+     */
+    public function setRecoveryQuestion(string $question): self
+    {
+        $this->recoveryQuestion = $question;
+
+        return $this;
+    }
+
+    /**
+     * Sets the user recovery record.
+     *
+     * @param UserRecovery $recoveryRecory
+     */
+    public function setRecoveryRecord(UserRecovery $recoveryRecory)
+    {
+        $this->recoveryRecord = $recoveryRecory;
+
+        if ($this->requiresQuestion) {
+            $this->setRecoveryQuestion($recoveryRecory->question);
+        }
+    }
 }
