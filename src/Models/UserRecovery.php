@@ -21,7 +21,7 @@ class UserRecovery extends Model
 
     public function setAnswerAttribute($answer): void
     {
-        $answer = $this->isAnswerHashed($anser) ? $answer : Hash::make($answer);
+        $answer = $this->isAnswerHashed($answer) ? $answer : Hash::make($answer);
         $this->attributes['answer'] = $answer;
     }
 

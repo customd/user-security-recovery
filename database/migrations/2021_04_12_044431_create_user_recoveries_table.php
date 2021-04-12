@@ -21,7 +21,6 @@ class CreateUserRecoveriesTable extends Migration
             $table->timestamps();
 
             $table->foreign('recovery_key_id')->references('id')->on('recovery_keys');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

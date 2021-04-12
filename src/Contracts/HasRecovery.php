@@ -14,7 +14,7 @@ trait HasRecovery
 
     protected ?string $recoveryQuestion = null;
 
-    protected string  $recoveryAnswer;
+    protected ?string  $recoveryAnswer = null;
 
     protected ?UserRecovery $recoveryRecord = null;
 
@@ -34,12 +34,19 @@ trait HasRecovery
     }
 
 
-    public function verifyRecoveryAnswer()
+    public function verifyRecoveryAnswer(?string $answer = null)
     {
+
+        if ($answer) {
+            $this->setRecoveryAnswer($answer);
+        }
+
+        $this->recoveryRecord ?? $this->findRecoveryRecord();
+
         if ($this->recoveryRecord === null) {
             throw new SecurityNotFoundException('No Recovery record found');
         }
-        return $this->recoveryRecord->validateAnswer($this->getRecoveryAnswer);
+        return $this->recoveryRecord->validateAnswer($this->getRecoveryAnswer());
     }
 
         /**
