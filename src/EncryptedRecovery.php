@@ -14,6 +14,7 @@ abstract class EncryptedRecovery implements RecoveryInterface
 
     public function __construct(?Authenticatable $user = null, ?string $privateKey = null)
     {
+        $this->type = get_called_class();
         $this->setUser($user);
         $this->setPrivateKey($privateKey);
     }

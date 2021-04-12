@@ -16,7 +16,10 @@ class UserRecovery extends Model
 
     public function user()
     {
-        return $this->belongsTo(config('auth.providers.users.model'));
+        return $this->belongsTo(
+            config('user-security-recovery.user_model') ?? config('auth.providers.users.model'),
+            config('user-security-recovery.user_model_primary_key')
+        );
     }
 
     public function setAnswerAttribute($answer): void

@@ -13,7 +13,7 @@ trait HasEncryptedRecovery
 {
     use HasRecovery;
 
-    protected string $privateKey;
+    protected ?string $privateKey = null;
 
 
      /**
@@ -23,7 +23,7 @@ trait HasEncryptedRecovery
      *
      * @return self
      */
-    public function setPrivateKey(string $privateKey): self
+    public function setPrivateKey(?string $privateKey): self
     {
         $this->privateKey = $privateKey;
 
@@ -89,7 +89,7 @@ trait HasEncryptedRecovery
         $recoveryKey->save();
 
         $userRecovery = new UserRecovery();
-        $userRecovery->user_id = $this->user->id;
+        $userRecovery->user_id = $this->getUserId();
         $userRecovery->question = $this->getRecoveryQuestion();
         $userRecovery->answer = $this->getRecoveryAnswer();
         $userRecovery->type = $this->type;

@@ -9,8 +9,7 @@ use CustomD\UserSecurityRecovery\Exceptions\SecurityNotFoundException;
 
 trait HasRecovery
 {
-
-
+    use HasUser;
 
     protected ?string $recoveryQuestion = null;
 
@@ -21,7 +20,7 @@ trait HasRecovery
 
     public function findRecoveryRecord()
     {
-        $recoveries = UserRecovery::where('type', $this->type)->where('user_id', $this->user->id);
+        $recoveries = UserRecovery::where('type', $this->type)->where('user_id', $this->getUserId());
 
         if ($this->recoveryQuestion !== null) {
             $recoveries->where('question', $this->getRecoveryQuestion());
@@ -91,7 +90,7 @@ trait HasRecovery
         $this->validateQuestionAnswerSet();
 
         $userRecovery = new UserRecovery();
-        $userRecovery->user_id = $this->user->id;
+        $userRecovery->user_id = $this->getUserId();
         $userRecovery->question = $this->getRecoveryQuestion();
         $userRecovery->answer = $this->getRecoveryAnswer();
         $userRecovery->type = $this->type;

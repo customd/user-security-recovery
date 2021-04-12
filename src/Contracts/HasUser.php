@@ -24,4 +24,9 @@ trait HasUser
             throw new SecurityException('User is not set');
         }
     }
+
+    protected function getUserId()
+    {
+        return $this->user->getAttribute(config('user-security-recovery.user_model_primary_key') ?? 'id');
+    }
 }
