@@ -11,7 +11,7 @@ use CustomD\UserSecurityRecovery\Exceptions\SecurityNotFoundException;
 
 trait HasEncryptedRecovery
 {
-    use hasRecovery;
+    use HasRecovery;
 
     protected string $privateKey;
 
@@ -23,11 +23,9 @@ trait HasEncryptedRecovery
      *
      * @return self
      */
-    public function setPrivateKey(?string $privateKey = null): self
+    public function setPrivateKey(string $privateKey): self
     {
-        //$pem = Encryption::hasSessionPem() ? Encryption::getSessionPem(auth()->user()) : null;
-        $pem = 'TODO'; //Get the currently authed users PEM somehow....
-        $this->privateKey = $privateKey ?? $pem;
+        $this->privateKey = $privateKey;
 
         return $this;
     }

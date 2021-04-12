@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use CustomD\UserSecurityRecovery\Exceptions\SecurityException;
 use CustomD\UserSecurityRecovery\Exceptions\SecurityNotFoundException;
 
-trait hasRecovery
+trait HasRecovery
 {
 
 
