@@ -49,13 +49,7 @@ trait HasEncryptedRecovery
 
     public function getRecoveryKey(): string
     {
-        $this->validate();
-
-        $this->recoveryRecord ?? $this->findRecoveryRecord();
-
-        if (! $this->verifyRecoveryAnswer()) {
-            throw new SecurityNotFoundException('Recovery Answer does not match does not match provided answer');
-        }
+        $this->verifyRecoveryAnswer();
 
         $recoveryKeyData = $this->recoveryRecord->recoveryKey;
 
