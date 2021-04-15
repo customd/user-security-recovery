@@ -4,7 +4,6 @@ namespace CustomD\UserSecurityRecovery;
 
 use CustomD\UserSecurityRecovery\Contracts\hasRecovery;
 use CustomD\UserSecurityRecovery\Contracts\HasUser;
-use CustomD\UserSecurityRecovery\Models\UserRecovery;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use CustomD\UserSecurityRecovery\Interfaces\RecoveryInterface;
 
@@ -12,10 +11,6 @@ abstract class SimpleRecovery implements RecoveryInterface
 {
     use HasUser;
     use hasRecovery;
-
-    protected bool $requiresQuestion = true;
-
-    protected string $type;
 
     /**
      * Constructs our instance.

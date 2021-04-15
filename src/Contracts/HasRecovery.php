@@ -17,6 +17,7 @@ trait HasRecovery
 
     protected ?UserRecovery $recoveryRecord = null;
 
+    protected bool $requiresQuestion = true;
 
     public function findRecoveryRecord()
     {
