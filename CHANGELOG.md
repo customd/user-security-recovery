@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/customd/user-security-recovery/compare/v1.0.0...v1.0.1) (2021-04-15)
+
+
+### Bug Fixes
+
+* getRecoveryKey option does not need to re-validate ([12fa000](https://github.com/customd/user-security-recovery/commit/12fa0006137e1fa9f1e7f0fd83523c391a95dd81))
+
 # 1.0.0 (2021-04-15)
 
 
