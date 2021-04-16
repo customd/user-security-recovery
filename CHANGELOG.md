@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/customd/user-security-recovery/compare/v1.1.2...v1.1.3) (2021-04-16)
+
+
+### Bug Fixes
+
+* Encryption salt should be passed as recieved ([12b6eaf](https://github.com/customd/user-security-recovery/commit/12b6eaf618505b7584d06dc0b47b9657639f4291))
+
 ## [1.1.2](https://github.com/customd/user-security-recovery/compare/v1.1.1...v1.1.2) (2021-04-16)
 
 
