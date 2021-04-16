@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/customd/user-security-recovery/compare/v1.1.1...v1.1.2) (2021-04-16)
+
+
+### Bug Fixes
+
+* Throw exception if recovery record not found ([0ff1a76](https://github.com/customd/user-security-recovery/commit/0ff1a76c2430fcc2009585e2fa6dc2c1723dc3f2))
+
 ## [1.1.1](https://github.com/customd/user-security-recovery/compare/v1.1.0...v1.1.1) (2021-04-16)
 
 
