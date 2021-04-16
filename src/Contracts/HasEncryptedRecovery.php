@@ -57,7 +57,7 @@ trait HasEncryptedRecovery
             null,
             $recoveryKeyData->key,
             $this->getRecoveryAnswer(),
-            hex2bin($recoveryKeyData->iv)
+            $recoveryKeyData->iv
         );
 
         return $rsa->getDecryptedPrivateKey();
