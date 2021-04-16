@@ -166,7 +166,7 @@ trait HasRecovery
      *
      * @param UserRecovery $recoveryRecory
      */
-    public function setRecoveryRecord($recoveryRecory)
+    public function setRecoveryRecord($recoveryRecory): self
     {
 
         if (! $recoveryRecory instanceof UserRecovery) {
@@ -182,5 +182,7 @@ trait HasRecovery
         if ($this->requiresQuestion) {
             $this->setRecoveryQuestion($recoveryRecory->question);
         }
+
+        return $this;
     }
 }
