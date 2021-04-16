@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/customd/user-security-recovery/compare/v1.1.0...v1.1.1) (2021-04-16)
+
+
+### Bug Fixes
+
+* setRecoveryRecord will now return the instance ([cddcf42](https://github.com/customd/user-security-recovery/commit/cddcf42bed4c05e1c89682822697aa34ff721797))
+
 # [1.1.0](https://github.com/customd/user-security-recovery/compare/v1.0.2...v1.1.0) (2021-04-16)
 
 
