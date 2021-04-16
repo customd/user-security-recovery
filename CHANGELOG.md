@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/customd/user-security-recovery/compare/v1.0.2...v1.1.0) (2021-04-16)
+
+
+### Features
+
+* Add ability to update existing recovery ([3e17e66](https://github.com/customd/user-security-recovery/commit/3e17e66a7917a933c35d265b02fec47218cad6c8))
+
 ## [1.0.2](https://github.com/customd/user-security-recovery/compare/v1.0.1...v1.0.2) (2021-04-15)
 
 
