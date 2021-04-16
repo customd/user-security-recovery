@@ -92,4 +92,28 @@ trait HasEncryptedRecovery
 
         return $this;
     }
+
+
+    public function update(): self
+    {
+
+        $this->validateHasPrivateKey();
+        $this->validateUser();
+        $this->validateQuestionAnswerSet();
+        if (! $this->recoveryRecord) {
+            throw new SecurityException("Cannot update wihtout first loading the recovery record");
+        }
+
+        $this->recoveryRecord->question = $this->getRecoveryQuestion();
+        $this->recoveryRecord->answer = $this->getRecoveryAnswer();
+        $this->recoveryRecord->save();
+
+        $keystore = $this->generateKeystore();
+        $recoveryKey = RecoveryKey::findOrFail($this->recoveryRecord->recovery_key_id);
+        $recoveryKey->iv = $keystore->getSalt();
+        $recoveryKey->key = $keystore->getPrivateKey();
+        $recoveryKey->save();
+
+        return $this;
+    }
 }

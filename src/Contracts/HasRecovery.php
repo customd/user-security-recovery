@@ -101,6 +101,22 @@ trait HasRecovery
         return $this;
     }
 
+    public function update(): self
+    {
+
+        $this->validateUser();
+        $this->validateQuestionAnswerSet();
+        if (! $this->recoveryRecord) {
+            throw new SecurityException("Cannot update wihtout first loading the recovery record");
+        }
+
+        $this->recoveryRecord->question = $this->getRecoveryQuestion();
+        $this->recoveryRecord->answer = $this->getRecoveryAnswer();
+        $this->recoveryRecord->save();
+
+        return $this;
+    }
+
             /**
      * Delete the current recovery record.
      *
@@ -150,8 +166,17 @@ trait HasRecovery
      *
      * @param UserRecovery $recoveryRecory
      */
-    public function setRecoveryRecord(UserRecovery $recoveryRecory)
+    public function setRecoveryRecord($recoveryRecory)
     {
+
+        if (! $recoveryRecory instanceof UserRecovery) {
+            $recoveryRecory = UserRecovery::find($recoveryRecory);
+        }
+
+        if ($recoveryRecory->type !== $this->type) {
+            throw new SecurityException("Failed to load as types mismatch");
+        }
+
         $this->recoveryRecord = $recoveryRecory;
 
         if ($this->requiresQuestion) {
