@@ -170,7 +170,7 @@ trait HasRecovery
     {
 
         if (! $recoveryRecory instanceof UserRecovery) {
-            $recoveryRecory = UserRecovery::find($recoveryRecory);
+            $recoveryRecory = UserRecovery::findOrFail($recoveryRecory);
         }
 
         if ($recoveryRecory->type !== $this->type) {
