@@ -46,6 +46,9 @@ trait HasRecovery
         if ($this->recoveryRecord === null) {
             throw new SecurityNotFoundException('No Recovery record found');
         }
+        
+        throw_unless($this->recoveryRecord->validateAnswer($this->getRecoveryAnswer()), new SecurityNotFoundException('Password not valid')); 
+        
         return $this->recoveryRecord->validateAnswer($this->getRecoveryAnswer());
     }
 
