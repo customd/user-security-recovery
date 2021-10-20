@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/customd/user-security-recovery/compare/v1.1.3...v1.1.4) (2021-10-20)
+
+
+### Bug Fixes
+
+* should throw exception if password not valid ([c824ac2](https://github.com/customd/user-security-recovery/commit/c824ac262b06138f748bc517b33a32228f39548b))
+
 ## [1.1.3](https://github.com/customd/user-security-recovery/compare/v1.1.2...v1.1.3) (2021-04-16)
 
 
