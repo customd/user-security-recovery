@@ -48,8 +48,7 @@ trait HasRecovery
         }
         
         throw_unless($this->recoveryRecord->validateAnswer($this->getRecoveryAnswer()), new SecurityNotFoundException('Password not valid')); 
-        
-        return $this->recoveryRecord->validateAnswer($this->getRecoveryAnswer());
+
     }
 
         /**
