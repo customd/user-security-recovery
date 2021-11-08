@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/customd/user-security-recovery/compare/v1.1.4...v1.1.5) (2021-11-08)
+
+
+### Bug Fixes
+
+* allow validate recovery to return or throw an exception ([e2a0fe7](https://github.com/customd/user-security-recovery/commit/e2a0fe7733a2c69af6d67522014102f92cd2b427))
+
 ## [1.1.4](https://github.com/customd/user-security-recovery/compare/v1.1.3...v1.1.4) (2021-10-20)
 
 
