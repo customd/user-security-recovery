@@ -19,6 +19,8 @@ trait HasRecovery
 
     protected bool $requiresQuestion = true;
 
+    protected string $type;
+
     public function findRecoveryRecord()
     {
         $recoveries = UserRecovery::where('type', $this->type)->where('user_id', $this->getUserId());
@@ -34,7 +36,7 @@ trait HasRecovery
     }
 
 
-    public function verifyRecoveryAnswer(?string $answer = null)
+    public function verifyRecoveryAnswer(?string $answer = null, bool $throw = true): bool
     {
 
         if ($answer) {
@@ -46,9 +48,11 @@ trait HasRecovery
         if ($this->recoveryRecord === null) {
             throw new SecurityNotFoundException('No Recovery record found');
         }
-        
-        throw_unless($this->recoveryRecord->validateAnswer($this->getRecoveryAnswer()), new SecurityNotFoundException('Password not valid')); 
 
+        $valid = $this->recoveryRecord->validateAnswer($this->getRecoveryAnswer());
+        throw_if(($throw && ! $valid), new SecurityNotFoundException('Password not valid'));
+
+        return $valid;
     }
 
         /**

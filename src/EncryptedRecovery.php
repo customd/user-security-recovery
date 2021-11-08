@@ -11,8 +11,6 @@ abstract class EncryptedRecovery implements RecoveryInterface
 {
     use HasEncryptedRecovery;
     use HasUser;
-    
-    protected string $type;
 
     public function __construct(?Authenticatable $user = null, ?string $privateKey = null)
     {
