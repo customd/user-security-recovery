@@ -6,6 +6,8 @@ use CustomD\UserSecurityRecovery\Interfaces\RecoveryInterface;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use CustomD\UserSecurityRecovery\Models\RecoveryKey;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * CustomD\UserSecurityRecovery\Models\UserRecovery
@@ -32,12 +34,18 @@ use CustomD\UserSecurityRecovery\Models\RecoveryKey;
  */
 class UserRecovery extends Model
 {
-    public function recoveryKey()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<RecoveryKey, UserRecovery>
+     */
+    public function recoveryKey(): BelongsTo
     {
         return $this->belongsTo(RecoveryKey::class);
     }
 
-    public function user()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<UserRecovery, \Illuminate\Foundation\Auth\User>
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(
             config('user-security-recovery.user_model') ?? config('auth.providers.users.model'),
@@ -45,11 +53,16 @@ class UserRecovery extends Model
         );
     }
 
-    public function setAnswerAttribute($answer): self
+    /**
+     *
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute<string, string>
+     */
+    protected function answer(): Attribute
     {
-        $answer = $this->isAnswerHashed($answer) ? $answer : Hash::make($answer);
-        $this->attributes['answer'] = $answer;
-        return $this;
+        return Attribute::set(
+            fn($value) => $this->isAnswerHashed($value) ? $value : Hash::make($value)
+        );
     }
 
     /**
@@ -64,8 +77,6 @@ class UserRecovery extends Model
 
         return $securityRecovery;
     }
-
-
 
     /**
      * Check if the password is already hashed.

@@ -21,9 +21,9 @@ trait HasEncryptedRecovery
      *
      * @param string|null $privateKey
      *
-     * @return self
+     * @return static
      */
-    public function setPrivateKey(?string $privateKey): self
+    public function setPrivateKey(?string $privateKey): static
     {
         $this->privateKey = $privateKey;
 
@@ -31,15 +31,16 @@ trait HasEncryptedRecovery
     }
 
 
-    public function validateHasPrivateKey()
+    public function validateHasPrivateKey(): static
     {
         if (stripos($this->privateKey, '-----BEGIN PRIVATE KEY-----') === false) {
             throw new SecurityException('Please pass a valid Private Key');
         }
+        return $this;
     }
 
 
-    protected function generateKeystore()
+    protected function generateKeystore(): Keypair
     {
         $keystore = EloquentAsyncKeys::setKeys(null, $this->privateKey);
         $keystore->setNewPassword($this->recoveryAnswer, true);

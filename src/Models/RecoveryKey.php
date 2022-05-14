@@ -4,6 +4,7 @@ namespace CustomD\UserSecurityRecovery\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use CustomD\UserSecurityRecovery\Models\UserRecovery;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 /**
  * CustomD\UserSecurityRecovery\Models\RecoveryKey
@@ -25,8 +26,10 @@ use CustomD\UserSecurityRecovery\Models\UserRecovery;
  */
 class RecoveryKey extends Model
 {
-
-    public function user()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough<\Illuminate\Foundation\Auth\User>
+     */
+    public function user(): HasOneThrough
     {
         return $this->hasOneThrough(
             config('user-security-recovery.user_model') ?? config('auth.providers.users.model'),
