@@ -21,7 +21,7 @@ trait HasRecovery
 
     protected string $type;
 
-    public function findRecoveryRecord()
+    public function findRecoveryRecord(): static
     {
         $recoveries = UserRecovery::where('type', $this->type)->where('user_id', $this->getUserId());
 
@@ -33,12 +33,13 @@ trait HasRecovery
         } catch (ModelNotFoundException $notFound) {
             throw new SecurityNotFoundException('No Recovery record found', $notFound->getCode(), $notFound);
         }
+
+        return $this;
     }
 
 
     public function verifyRecoveryAnswer(?string $answer = null, bool $throw = true): bool
     {
-
         if ($answer) {
             $this->setRecoveryAnswer($answer);
         }
@@ -55,7 +56,7 @@ trait HasRecovery
         return $valid;
     }
 
-        /**
+    /**
      * returns the current recovery answer.
      *
      * @return string|null
@@ -75,7 +76,7 @@ trait HasRecovery
         return $this->recoveryQuestion;
     }
 
-    public function validateQuestionAnswerSet(): void
+    public function validateQuestionAnswerSet(): static
     {
         if ($this->requiresQuestion && empty($this->getRecoveryQuestion())) {
             throw new SecurityException('Question is not set');
@@ -84,17 +85,18 @@ trait HasRecovery
         if (empty($this->getRecoveryAnswer())) {
             throw new SecurityException('Answer is not set');
         }
+
+        return $this;
     }
 
     /**
      * stores the new recovery question.
      *
-     * @return self
+     * @return static
      */
-    public function store(): self
+    public function store(): static
     {
-        $this->validateUser();
-        $this->validateQuestionAnswerSet();
+        $this->validateUser()->validateQuestionAnswerSet();
 
         $userRecovery = new UserRecovery();
         $userRecovery->user_id = $this->getUserId();
@@ -107,11 +109,10 @@ trait HasRecovery
         return $this;
     }
 
-    public function update(): self
+    public function update(): static
     {
+        $this->validateUser()->validateQuestionAnswerSet();
 
-        $this->validateUser();
-        $this->validateQuestionAnswerSet();
         if (! $this->recoveryRecord) {
             throw new SecurityException("Cannot update wihtout first loading the recovery record");
         }
@@ -123,12 +124,12 @@ trait HasRecovery
         return $this;
     }
 
-            /**
+    /**
      * Delete the current recovery record.
      *
-     * @return self
+     * @return static
      */
-    public function destroyRecoveryKey()
+    public function destroyRecoveryKey(): static
     {
         $this->validateUser();
         $this->findRecoveryRecord();
@@ -144,9 +145,9 @@ trait HasRecovery
      *
      * @param string $string
      *
-     * @return self
+     * @return static
      */
-    public function setRecoveryAnswer(string $string): self
+    public function setRecoveryAnswer(string $string): static
     {
         $this->recoveryAnswer = preg_replace('/[^a-z\d]/', '', strtolower($string));
 
@@ -158,9 +159,9 @@ trait HasRecovery
      *
      * @param string $question
      *
-     * @return self
+     * @return static
      */
-    public function setRecoveryQuestion(string $question): self
+    public function setRecoveryQuestion(string $question): static
     {
         $this->recoveryQuestion = $question;
 
@@ -170,23 +171,23 @@ trait HasRecovery
     /**
      * Sets the user recovery record.
      *
-     * @param UserRecovery $recoveryRecory
+     * @param UserRecovery|int $recoveryRecord
      */
-    public function setRecoveryRecord($recoveryRecory): self
+    public function setRecoveryRecord(UserRecovery|int $recoveryRecord): static
     {
 
-        if (! $recoveryRecory instanceof UserRecovery) {
-            $recoveryRecory = UserRecovery::findOrFail($recoveryRecory);
+        if (! $recoveryRecord instanceof UserRecovery) {
+            $recoveryRecord = UserRecovery::findOrFail($recoveryRecord);
         }
 
-        if ($recoveryRecory->type !== $this->type) {
+        if ($recoveryRecord->type !== $this->type) {
             throw new SecurityException("Failed to load as types mismatch");
         }
 
-        $this->recoveryRecord = $recoveryRecory;
+        $this->recoveryRecord = $recoveryRecord;
 
         if ($this->requiresQuestion) {
-            $this->setRecoveryQuestion($recoveryRecory->question);
+            $this->setRecoveryQuestion($recoveryRecord->question);
         }
 
         return $this;
