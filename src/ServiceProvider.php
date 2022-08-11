@@ -8,6 +8,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     protected const DB_PATH = __DIR__ . '/../database/migrations';
 
+    /**
+     * @return void
+     */
     public function boot()
     {
         $this->publishes([
@@ -17,6 +20,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->loadMigrationsFrom(self::DB_PATH);
     }
 
+    /**
+     * @return void
+     */
     public function register()
     {
         $this->mergeConfigFrom(
