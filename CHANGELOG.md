@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/customd/user-security-recovery/compare/v1.1.5...v2.0.0) (2022-08-11)
+
+
+* Lara 9 (#3) ([45d0b1c](https://github.com/customd/user-security-recovery/commit/45d0b1c13ca22352a2b442a8a4e53d28252093b6)), closes [#3](https://github.com/customd/user-security-recovery/issues/3)
+
+
+### BREAKING CHANGES
+
+* stops support for older versions
+
+* ci: semver
+
+* feat: disable older php versions
+* see upgrade instructions
+
+Co-authored-by: Craig Smith <craig.smith@customd.com>
+
 ## [1.1.5](https://github.com/customd/user-security-recovery/compare/v1.1.4...v1.1.5) (2021-11-08)
 
 
