@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/customd/user-security-recovery/compare/v2.1.0...v2.1.1) (2023-03-27)
+
+
+### Bug Fixes
+
+* namespace on file match path ([8eb63c1](https://github.com/customd/user-security-recovery/commit/8eb63c19d5289ec80e423ea72e5b56676eedc96a))
+
 # [2.1.0](https://github.com/customd/user-security-recovery/compare/v2.0.0...v2.1.0) (2023-03-27)
 
 
