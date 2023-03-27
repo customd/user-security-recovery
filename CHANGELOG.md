@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/customd/user-security-recovery/compare/v2.0.0...v2.1.0) (2023-03-27)
+
+
+### Bug Fixes
+
+* validation rule and action ([8ef8e89](https://github.com/customd/user-security-recovery/commit/8ef8e897d6203a8e5e245040659738914628a5dd))
+
+
+### Features
+
+* laravel 10 support ([44305cd](https://github.com/customd/user-security-recovery/commit/44305cded59d9dc3f9ee4a4d14ee650b1b368cf4))
+
 # [2.0.0](https://github.com/customd/user-security-recovery/compare/v1.1.5...v2.0.0) (2022-08-11)
 
 
