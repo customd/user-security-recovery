@@ -15,13 +15,13 @@
     }
   ],
   "require": {
-    "php": "^8.1",
-    "illuminate/support": "^9.0|^10.0"
+    "php": "^8.2",
+    "illuminate/support": "^9.0|^10.0|^11.0"
   },
   "require-dev": {
     "custom-d/eloquent-async-keys": "^3.0|^4.0",
     "nunomaduro/larastan": "^2.0",
-    "orchestra/testbench": "^7.0|^8.0",
+    "orchestra/testbench": "^7.0|^8.0|^9.0",
     "phpunit/phpunit": "^9.0|^10.0"
   },
   "autoload": {
@@ -35,7 +35,8 @@
     }
   },
   "scripts": {
-    "phpunit": "phpunit"
+    "test": "phpunit",
+    "phpstan": "phpstan"
   },
   "extra": {
     "laravel": {

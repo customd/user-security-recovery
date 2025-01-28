@@ -1,7 +1,9 @@
 include:
-  - project: "custom-d/ci-templates"
-    file: "php-packages.gitlab-ci.yml"
+  - project: "custom-d/devops-platform/ci-templates/php"
+    file: "composer-package.gitlab-ci.yml"
+    ref: release/2.x
 
 variables:
-   PHP_IMAGE: 'tiagosampaio/php'
-   PHP_PRIMARY_VERSION: '8.1'
+  PHP_PRIMARY_VERSION: "8.3"
+  TEST_PHP_8_2: "true"
+  TEST_PHP_8_4: "true"

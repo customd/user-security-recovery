@@ -14,8 +14,8 @@ class ValidateSecurityAnswerRule implements Rule, DataAwareRule
      *
      * @var array
      */
-    protected $data = []; 
-    
+    protected $data = [];
+
     /**
      * Create a new rule instance.
      *
@@ -24,7 +24,7 @@ class ValidateSecurityAnswerRule implements Rule, DataAwareRule
     public function __construct(protected string $questionCol = 'security_question_id', protected ?User $user = null)
     {
     }
-    
+
     /**
      * Set the data under validation.
      *
@@ -34,7 +34,6 @@ class ValidateSecurityAnswerRule implements Rule, DataAwareRule
     public function setData($data)
     {
         $this->data = $data;
- 
         return $this;
     }
 

@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UserRecovery extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<RecoveryKey, UserRecovery>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<RecoveryKey, $this>
      */
     public function recoveryKey(): BelongsTo
     {
@@ -43,12 +43,16 @@ class UserRecovery extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<UserRecovery, \Illuminate\Foundation\Auth\User>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     public function user(): BelongsTo
     {
+         /**
+         * @var class-string $model
+         */
+        $model =  config('user-security-recovery.user_model') ?? config('auth.providers.users.model');
         return $this->belongsTo(
-            config('user-security-recovery.user_model') ?? config('auth.providers.users.model'),
+            $model,
             config('user-security-recovery.user_model_primary_key')
         );
     }
