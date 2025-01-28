@@ -27,7 +27,6 @@ jobs:
             @semantic-release/git
             @semantic-release/changelog
             semantic-release-slack-bot
-            @semantic-release/exec
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
