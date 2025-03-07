@@ -25,7 +25,7 @@ php artisan vendor:publish --provider="CustomD\UserSecurityRecovery\ServiceProvi
 
 ## Usage
 
-CHANGE ME
+CHANGE ME.
 
 ## Security
 
